@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"bitbucket.org/lightbulbwithswitch/sms-service.git/twillio"
+	"github.com/NoSkillGirl/sms-service/twilio"
 	_ "github.com/go-sql-driver/mysql"
 )
 

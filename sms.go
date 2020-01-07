@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"bitbucket.org/lightbulbwithswitch/sms-service.git/api"
+	"github.com/NoSkillGirl/sms-service/api"
 )
 
 func main() {

@@ -1,5 +1,5 @@
 # deployment
-apiVersion: apps/v3
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sms-service
@@ -13,10 +13,10 @@ spec:
     metadata:
       labels:
         app: sms-service
-        version: v3
+        version: v1
     spec:
       containers:
-        - image: ajoop/sms-service:v3
+        - image: ajoop/sms-service:v1
           imagePullPolicy: Always
           name: sms-service
           ports:
