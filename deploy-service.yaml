@@ -1,0 +1,15 @@
+# service
+apiVersion: v1
+kind: Service
+metadata:
+  name: sms-service
+  labels:
+    app: sms-service
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: sms-service
