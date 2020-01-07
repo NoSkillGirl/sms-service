@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/NoSkillGirl/sms-service/twilio"
+	"github.com/NoSkillGirl/sms-service/twillio"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -21,6 +21,10 @@ type SendSMSRequest struct {
 type SendSMSResponse struct {
 	Message string
 }
+
+const mySQLHost = "34.93.137.151"
+
+var mySQLConnection = fmt.Sprintf("root:password@tcp(%s)/tour_travel", mySQLHost)
 
 // SendSMS - api send sms
 func SendSMS(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +57,9 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// initialize db connection
-		db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/smsDetails")
+		//db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/smsDetails")
+		db, err := sql.Open("mysql", mySQLConnection)
+
 		if err != nil {
 			fmt.Println(err)
 		}

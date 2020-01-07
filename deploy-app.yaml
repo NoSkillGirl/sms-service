@@ -13,10 +13,10 @@ spec:
     metadata:
       labels:
         app: sms-service
-        version: v1
+        version: v3
     spec:
       containers:
-        - image: ajoop/sms-service:v1
+        - image: ajoop/sms-service:v3
           imagePullPolicy: Always
           name: sms-service
           ports:
