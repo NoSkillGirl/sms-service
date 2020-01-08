@@ -25,6 +25,7 @@ type SendSMSResponse struct {
 const mySQLHost = "34.93.137.151"
 
 var mySQLConnection = fmt.Sprintf("root:password@tcp(%s)/tour_travel", mySQLHost)
+var mySQLConnectionSMS = fmt.Sprintf("root:password@tcp(%s)/smsDetails", mySQLHost)
 
 // SendSMS - api send sms
 func SendSMS(w http.ResponseWriter, r *http.Request) {
@@ -32,6 +33,7 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 		sendSMSRequest := SendSMSRequest{}
 
 		jsn, err := ioutil.ReadAll(r.Body)
+		fmt.Println("r : ", r)
 		if err != nil {
 			fmt.Println("Error in reading request body", err)
 		}
@@ -40,7 +42,6 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Println("Decoding Error", err)
 		}
-
 		fmt.Println("sendSMSRequest ....")
 		fmt.Println(sendSMSRequest)
 
@@ -58,7 +59,7 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 
 		// initialize db connection
 		//db, err := sql.Open("mysql", "root:password@tcp(127.0.0.1:3306)/smsDetails")
-		db, err := sql.Open("mysql", mySQLConnection)
+		db, err := sql.Open("mysql", mySQLConnectionSMS)
 
 		if err != nil {
 			fmt.Println(err)
@@ -79,7 +80,6 @@ func SendSMS(w http.ResponseWriter, r *http.Request) {
 		sendSMSResponse := SendSMSResponse{
 			Message: "SMS Sent Successfull",
 		}
-
 		json.NewEncoder(w).Encode(sendSMSResponse)
 	}
 }

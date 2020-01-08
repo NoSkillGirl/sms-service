@@ -16,6 +16,7 @@ func SendSMS(mob string, msg string) int {
 
 	// Build out the data for our message
 	v := url.Values{}
+	fmt.Println(mob, msg)
 	v.Set("To", mob)
 	v.Set("From", "+13374193975")
 	v.Set("Body", msg)
